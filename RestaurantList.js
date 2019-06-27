@@ -1,13 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import AppNavigator from './AppNavigator';
 
-export default class App extends React.Component {
-  render(){
-  return (
-    <AppNavigator/>
-  );
-  }
+export default class RestaurantList extends React.Component {
+    render(){
+        return (
+            <View style={styles.container}>
+            <Text>RestaurantPage!</Text>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
