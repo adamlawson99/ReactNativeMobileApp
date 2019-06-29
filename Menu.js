@@ -2,6 +2,20 @@ import React, { Component } from 'react';
 import { AppRegistry, FlatList, StyleSheet, Text, View } from 'react-native';
 
 export default class FlatListBasics extends Component {
+  static navigationOptions = ({ navigation }) => {
+      return {
+        title: 'Menu',
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          marginRight: '40%',
+          marginLeft: 'auto',
+        },
+      };
+    };
   render() {
     return (
       <View style={styles.container}>

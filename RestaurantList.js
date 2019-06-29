@@ -24,7 +24,8 @@ export class RestaurantList extends React.Component {
               <Card
                 title="McDonald's">
                 <Text style={{marginBottom: 10}}>
-                    The idea with React Native Elements is more about component structure than actual design.
+                Iconic Fast Food Chain Serving Burgers, Fries, Salads,
+    Ice Cream And More
                 </Text>
                 <Button
                     backgroundColor='#03A9F4'
