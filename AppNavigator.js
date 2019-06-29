@@ -2,10 +2,12 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import App from './App';
 import RestaurantList from './RestaurantList';
 import Home from './Home';
+import Menu from './Menu';
 
 const AppNavigator = createStackNavigator({
   Home: { screen: Home },
-  RestaurantList: { screen: RestaurantList}
+  RestaurantList: { screen: RestaurantList},
+  Menu: {screen: Menu}
 });
 
 const MyApp = createAppContainer(AppNavigator);
