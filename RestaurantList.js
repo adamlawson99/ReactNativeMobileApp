@@ -24,9 +24,15 @@ export class RestaurantList extends React.Component {
               <Card
                 title="McDonald's">
                 <Text style={{marginBottom: 10}}>
-                Iconic Fast Food Chain Serving Burgers, Fries, Salads,
-    Ice Cream And More
+                Iconic Fast Food Chain Serving Burgers, Fries, Salads, Ice Cream And More
                 </Text>
+                <Text style={{marginBottom: 10}}>
+                Price Range: $1 - $15
+                </Text>
+                <Image
+                style={{width: 50, height: 50}}
+                source={require('./images/star.png')}
+                />
                 <Button
                     backgroundColor='#03A9F4'
                     buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
