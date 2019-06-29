@@ -5,20 +5,15 @@ import { Card, ListItem, Button, Icon } from 'react-native-elements';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
 export class RestaurantList extends React.Component {
-    static navigationOptions = ({ navigation }) => {
-        return {
-          title: 'Restaurants',
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            marginRight: '40%',
-            marginLeft: 'auto',
-          },
-        };
-      };
+  static navigationOptions = ({navigation}) => {
+  return {
+    title: 'Restaurants',
+    headerRight: <Button
+                     title="Cart"
+                     onPress={ () => navigation.navigate('Cart')} />
+
+  };
+};
     render(){
         return (
           <ScrollView>

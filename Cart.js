@@ -5,11 +5,7 @@ import { Card, ListItem, Button, Icon } from 'react-native-elements';
 export default class FlatListBasics extends Component {
   static navigationOptions = ({navigation}) => {
   return {
-    title: 'Menu',
-    headerRight: <Button
-                     title="Cart"
-                     onPress={ () => navigation.navigate('Cart')} />
-
+    title: 'Cart'
   };
 };
   render() {
