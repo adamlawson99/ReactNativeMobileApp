@@ -52,7 +52,7 @@ export class RestaurantList extends React.Component {
 
               <Card
                 title="John Juan Burrito">
-                <Image source={require('./images/johnjuanburrito.png')}style={{width: 40, height: 40}} />
+                <Image source={require('./images/johnjuanburrito.jpg')}style={{width: 40, height: 40}} />
                 <Text style={{marginBottom: 10}}>
                 Iconic Fast Food Chain Serving Burgers, Fries, Salads, Ice Cream And More
                 </Text>
