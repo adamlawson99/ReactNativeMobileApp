@@ -24,7 +24,8 @@ export class RestaurantList extends React.Component {
           <ScrollView>
             <View style={styles.container}>
               <Card
-                title="McDonald's">
+                title="McDonald's"
+                class="cardSize">
                 <Image source={require('./images/mcdonalds.png')}style={{width: 40, height: 40}} />
                 <Text style={{marginBottom: 10}}>
                 Iconic Fast Food Chain Serving Burgers, Fries, Salads, Ice Cream And More
@@ -54,10 +55,10 @@ export class RestaurantList extends React.Component {
                 title="John Juan Burrito">
                 <Image source={require('./images/johnjuanburrito.jpg')}style={{width: 40, height: 40}} />
                 <Text style={{marginBottom: 10}}>
-                Iconic Fast Food Chain Serving Burgers, Fries, Salads, Ice Cream And More
+                Cheap Mexican Food, includes : Tacos, Nachos, Burritos, Cheese, Deep fried Cheese, more cheese, spicy
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                Price Range: $1 - $15
+                Price Range: $8 - $30
                 </Text>
                 <Text style={{marginBottom: 10}}>
                 Location: 354 John Street
@@ -78,10 +79,10 @@ export class RestaurantList extends React.Component {
               </Card>
 
               <Card
-                title="McDonald's">
-                <Image source={require('./images/mcdonalds.png')}style={{width: 40, height: 40}} />
+                title="Supply And Demand">
+                <Image source={require('./images/sp.jpg')}style={{width: 40, height: 40}} />
                 <Text style={{marginBottom: 10}}>
-                Iconic Fast Food Chain Serving Burgers, Fries, Salads, Ice Cream And More
+                Stylish venue with an open kitchen, raw bar & rotating menu of creative, locally sourced cuisine.
                 </Text>
                 <Text style={{marginBottom: 10}}>
                 Price Range: $1 - $15
@@ -105,13 +106,13 @@ export class RestaurantList extends React.Component {
               </Card>
 
               <Card
-                title="McDonald's">
-                <Image source={require('./images/mcdonalds.png')}style={{width: 40, height: 40}} />
+                title="Shawarma Palace">
+                <Image source={require('./images/ShawarmaPalace.png')}style={{width: 40, height: 40}} />
                 <Text style={{marginBottom: 10}}>
                 Iconic Fast Food Chain Serving Burgers, Fries, Salads, Ice Cream And More
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                Price Range: $1 - $15
+                Price Range: $7 - $20
                 </Text>
                 <Text style={{marginBottom: 10}}>
                 Location: 6754 Donald Street
@@ -132,13 +133,13 @@ export class RestaurantList extends React.Component {
               </Card>
 
               <Card
-                title="McDonald's">
-                <Image source={require('./images/mcdonalds.png')}style={{width: 40, height: 40}} />
+                title="Perkins">
+                <Image source={require('./images/Perkins.png')}style={{width: 40, height: 40}} />
                 <Text style={{marginBottom: 10}}>
-                Iconic Fast Food Chain Serving Burgers, Fries, Salads, Ice Cream And More
+                Kid-friendly chain known for baked goods, breakfasts & other American standards in dinerlike digs.
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                Price Range: $1 - $15
+                Price Range: $12 - $30
                 </Text>
                 <Text style={{marginBottom: 10}}>
                 Location: 69 Love Crescent
@@ -159,13 +160,13 @@ export class RestaurantList extends React.Component {
               </Card>
 
               <Card
-                title="McDonald's">
-                <Image source={require('./images/mcdonalds.png')}style={{width: 40, height: 40}} />
+                title="Rôtisserie St-Hubert">
+                <Image source={require('./images/stHuberts.jpg')}style={{width: 40, height: 40}} />
                 <Text style={{marginBottom: 10}}>
-                Iconic Fast Food Chain Serving Burgers, Fries, Salads, Ice Cream And More
+                Nos côtes levées BBQ et Style Texan sont parfaites pour vos BBQ d'été!
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                Price Range: $1 - $15
+                Price Range: $8 - $40
                 </Text>
                 <Text style={{marginBottom: 10}}>
                 Location: 613 Cena Street
@@ -186,13 +187,13 @@ export class RestaurantList extends React.Component {
               </Card>
 
               <Card
-                title="McDonald's">
-                <Image source={require('./images/mcdonalds.png')}style={{width: 40, height: 40}} />
+                title="Dizengoff">
+                <Image source={require('./images/dizengoff.jpg')}style={{width: 40, height: 40}} />
                 <Text style={{marginBottom: 10}}>
-                Iconic Fast Food Chain Serving Burgers, Fries, Salads, Ice Cream And More
+                Za'atar Chicken, served with Pita, Hummus-Tehina and Chopped Salad. $36 - Feeds four. Take-out only. PHILADELPHIA WHOLE FOODS
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                Price Range: $1 - $15
+                Price Range: $15 - $25
                 </Text>
                 <Text style={{marginBottom: 10}}>
                 Location: 5643 Ciena Street
@@ -213,13 +214,13 @@ export class RestaurantList extends React.Component {
               </Card>
 
               <Card
-                title="McDonald's">
-                <Image source={require('./images/mcdonalds.png')}style={{width: 40, height: 40}} />
+                title="The Keg">
+                <Image source={require('./images/theKeg.jpg')}style={{width: 40, height: 40}} />
                 <Text style={{marginBottom: 10}}>
                 Iconic Fast Food Chain Serving Burgers, Fries, Salads, Ice Cream And More
                 </Text>
                 <Text style={{marginBottom: 10}}>
-                Price Range: $1 - $15
+                Price Range: $20 - $50
                 </Text>
                 <Text style={{marginBottom: 10}}>
                 Location: 1943 Street Street
@@ -252,5 +253,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
 
 export default RestaurantList;
