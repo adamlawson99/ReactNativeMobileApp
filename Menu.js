@@ -14,8 +14,8 @@ export default class FlatListBasics extends Component {
 };
   render() {
     return (
-      <ScrollView>
       <View style={styles.container}>
+      <ScrollView>
         <Card
           title="Sides and Drinks"
           class="cardSize">
@@ -197,8 +197,13 @@ export default class FlatListBasics extends Component {
               onPress={() => alert('Added!')}
               title='ADD TO CART' />
         </Card>
-      </View>
       </ScrollView>
+      <Button
+          backgroundColor='#03A9F4'
+          buttonStyle={{height: 65, borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+          onPress={() => this.props.navigation.navigate('PageDeCommande')}
+          title='CHECKOUT' />
+      </View>
     );
   }
 }
