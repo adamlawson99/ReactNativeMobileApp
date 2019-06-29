@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import {Header} from 'react-native';
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import { Card, ListItem, Button, Icon } from 'react-native-elements';
+import { Rating, AirbnbRating } from 'react-native-ratings';
 
 export class RestaurantList extends React.Component {
     static navigationOptions = ({ navigation }) => {
@@ -29,11 +30,13 @@ export class RestaurantList extends React.Component {
                 <Text style={{marginBottom: 10}}>
                 Price Range: $1 - $15
                 </Text>
-                <Image
-                style={{width: 50, height: 50}}
-                source={require('./images/star.png')}
+                <AirbnbRating
+                count={5}
+                isDisabled={true}
+                defaultRating={4.5}
+                size={20}
                 />
-                <Button
+                <Button style={{marginBottom: 0}}
                     backgroundColor='#03A9F4'
                     buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                     onPress={() => this.props.navigation.navigate('Menu')
