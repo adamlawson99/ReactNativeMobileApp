@@ -184,7 +184,7 @@ export default class FlatListBasics extends Component {
           <Text style={{fontWeight: 'bold', fontSize: 20}}>
           Oreo McFlurry
           </Text>
-          <Image source={require('./images/mcdonalds-double-big-mac.jpg')}style={{width: 100, height: 100}} />
+          <Image source={require('./images/mcdonalds-oreo-mcflurry.jpg')}style={{width: 100, height: 100}} />
           <Text>
           Vanilla icecream with hot fudge on it, in a cup, with oreos
           </Text>
@@ -201,7 +201,7 @@ export default class FlatListBasics extends Component {
       <Button
           backgroundColor='#03A9F4'
           buttonStyle={{height: 65, borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-          onPress={() => this.props.navigation.navigate('PageDeCommande')}
+          onPress={() => this.props.navigation.navigate('Cart')}
           title='CHECKOUT' />
       </View>
     );

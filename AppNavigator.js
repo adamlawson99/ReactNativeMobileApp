@@ -4,14 +4,14 @@ import RestaurantList from './RestaurantList';
 import Home from './Home';
 import Menu from './Menu';
 import Cart from './Cart';
-import PageDeCommande from './PageDeCommande';
+import Checkout from './Checkout';
 
 const AppNavigator = createStackNavigator({
   Home: { screen: Home },
   RestaurantList: { screen: RestaurantList},
   Menu: {screen: Menu},
   Cart: {screen: Cart},
-  PageDeCommande: {screen: PageDeCommande}
+  Checkout: {screen: Checkout}
 });
 
 const MyApp = createAppContainer(AppNavigator);
