@@ -93,5 +93,6 @@ const styles = StyleSheet.create({
   },
 })
 
+
 // skip this line if using Create React Native App
 AppRegistry.registerComponent('AwesomeProject', () => FlatListBasics);

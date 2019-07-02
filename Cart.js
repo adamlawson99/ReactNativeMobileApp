@@ -2,53 +2,91 @@ import React, { Component } from 'react';
 import { AppRegistry, FlatList, StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Card, ListItem, Button, Icon, Image } from 'react-native-elements';
 
-export default class FlatListBasics extends Component {
+class FlatListItem extends Component{
+  render() {
+    return (
+      <View style={{
+        flex: 1,
+
+      }}>
+        <Text><Text>{this.props.item.quantity} X  </Text><Text>{this.props.item.item_name}</Text></Text>
+        <Text>{this.props.item.item_total} $</Text>
+      </View>
+    );
+  }
+}
+
+export default class Cart extends Component {
+  state: {
+    items: [],
+  }
   static navigationOptions = ({navigation}) => {
   return {
     title: 'Cart'
   };
 };
-  render() {
-    return (
-      <View style={styles.container}>
-      <ScrollView>
-        <Card
-          title="Sliced Apples"
-          class="cardSize">
-          <Image source={require('./images/mcdonalds-apple-slices.jpg')}style={{width: 100, height: 100}} />
-          <Text>
-          Yummy processed apples, slightly Healthy
-          </Text>
-          <Text>
-          Price : $1.99
-          </Text>
-          <Text>Amount: 2</Text>
-          <View style={{flexDirection:"row"}}>
-                    <View style={{flex:1}}>
-                        <Button title="-" style={{justifyContent: 'flex-start',}} />
-                    </View>
-                    <View style={{flex:1}}>
-                        <Button title="+" style={{justifyContent: 'flex-end',}} />
-                    </View>
-          </View>
-        </Card>
-          <Text style={{fontWeight: 'bold', fontSize: 40}}>
-          Total
-          </Text>
-          <Text style={{fontSize: 20}}>
-          Price : $1230.3254
-          </Text>
+  constructor(props){
+    super(props)
+    this.calcTotal = this.calcTotal.bind(this);
+    this.state = {
+      items: this.props.navigation.getParam('items','no-items!'),
+    }
+  }
 
-        </ScrollView>
-        <Button
-            backgroundColor='#03A9F4'
-            buttonStyle={{height: 65, borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-            onPress={() => this.props.navigation.navigate('Checkout')}
-            title='CONTINUE CHECKOUT' />
-        </View>
+calcTotal(){
+  var total = 0;
+  items = this.state.items;
+  for(var i = 0; i < items.length; i++){
+    item = items[i];
+    total += item.item_total;
+  }
+  return total;
+}
+remove(item){
+  console.log("Remove");
+  console.log(item);
+}
+add(item){
+  console.log("Add");
+  console.log(item);
+}
+
+  render() {
+    console.log(this.state.items);
+    return (
+      <View style ={{flex:1,marginTop: 22}}>
+        <Card
+          title="My order"
+          class="cardSize">
+        <FlatList data = {this.state.items} extraData = {this.state}
+        renderItem={({item,index})=>{
+          console.log(`Item = ${JSON.stringify(item)}, index = ${index}`);
+          return (
+          <View>
+          <FlatListItem item ={item} index={index}>
+          </FlatListItem>
+          <View style={{flex: 1, flexDirection: 'row'}}>
+          <Button style = {{marginRight: 5}}
+            title = " + "
+            onPress = {()=> this.add(item)}
+          ></Button>
+          <Button
+            title = " - "
+            onPress = {()=> this.remove(item)}
+          ></Button>
+          </View>
+          </View>
+          );
+        }}>
+
+        </FlatList>
+        <Text>Order Total: {this.calcTotal()}$</Text>
+        </Card>
+      </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -60,7 +98,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 44,
   },
+  item_name: { 
+    marginRight: 50,
+  }
 })
+
 
 // skip this line if using Create React Native App
 AppRegistry.registerComponent('AwesomeProject', () => FlatListBasics);

@@ -8,11 +8,22 @@ export default class FlatListBasics extends Component {
     title: 'Menu',
     headerRight: <Button
                      title="Cart"
-                     onPress={ () => navigation.navigate('Cart')} />
+                     onPress={ () => navigation.navigate('Cart', {items: items})} />
 
   };
 };
   render() {
+    var apple = new item("Apple slices", 1.99, "1");
+    var fries = new item("Fries", 2.75,"2");
+    var poutine = new item("Poutine",4.89,3);
+    var softDrink = new item("Soft Drink", 0.99, 4);
+    var quarterPounder = new item("Quarter Pounder", 3.99, 5);
+    var BLTChickenCrisp = new item("BLT Chicken Crisp", 5.99, 6);
+    var doubleBigMac = new item("Double BigMac", 7.99, 7);
+    var vanillaIceCream = new item("Vanilla Ice Cream Cone", 1.99, 8);
+    var hotFudgeSundae = new item("Hot Fudge Sunday", 2.99,9);
+    var oreoMcFlurry = new item("Oreo McFlurry", 3.99, 10)
+
     return (
       <View style={styles.container}>
       <ScrollView>
@@ -33,7 +44,7 @@ export default class FlatListBasics extends Component {
           <Button style={{marginBottom: 10}}
               backgroundColor='#03A9F4'
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              onPress={() => alert('Added!')}
+              onPress={() => { addtocart(apple);}}
               title='ADD TO CART' />
           <View style={{borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 10}}/>
 
@@ -50,7 +61,7 @@ export default class FlatListBasics extends Component {
           <Button style={{marginBottom: 10}}
               backgroundColor='#03A9F4'
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              onPress={() => alert('Added!')}
+              onPress={() => addtocart(fries)}
               title='ADD TO CART' />
           <View style={{borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 10}}/>
 
@@ -67,7 +78,7 @@ export default class FlatListBasics extends Component {
           <Button style={{marginBottom: 10}}
               backgroundColor='#03A9F4'
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              onPress={() => alert('Added!')}
+              onPress={() => addtocart(poutine)}
               title='ADD TO CART' />
               <View style={{borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 10}}/>
 
@@ -84,7 +95,7 @@ export default class FlatListBasics extends Component {
               <Button style={{marginBottom: 10}}
                   backgroundColor='#03A9F4'
                   buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                  onPress={() => alert('Added!')}
+                  onPress={() => addtocart(softDrink)}
                   title='ADD TO CART' />
         </Card>
 
@@ -105,7 +116,7 @@ export default class FlatListBasics extends Component {
           <Button style={{marginBottom: 10}}
               backgroundColor='#03A9F4'
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              onPress={() => alert('Added!')}
+              onPress={() => addtocart(quarterPounder)}
               title='ADD TO CART' />
           <View style={{borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 10}}/>
 
@@ -122,7 +133,7 @@ export default class FlatListBasics extends Component {
           <Button style={{marginBottom: 10}}
               backgroundColor='#03A9F4'
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              onPress={() => alert('Added!')}
+              onPress={() => addtocart(BLTChickenCrisp)}
               title='ADD TO CART' />
           <View style={{borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 10}}/>
 
@@ -139,7 +150,7 @@ export default class FlatListBasics extends Component {
           <Button style={{marginBottom: 10}}
               backgroundColor='#03A9F4'
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              onPress={() => alert('Added!')}
+              onPress={() => addtocart(doubleBigMac)}
               title='ADD TO CART' />
         </Card>
 
@@ -160,12 +171,12 @@ export default class FlatListBasics extends Component {
           <Button style={{marginBottom: 10}}
               backgroundColor='#03A9F4'
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              onPress={() => alert('Added!')}
+              onPress={() =>addtocart(vanillaIceCream)}
               title='ADD TO CART' />
           <View style={{borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 10}}/>
 
           <Text style={{fontWeight: 'bold', fontSize: 20}}>
-          Hot Fudge Sunday
+          Hot Fudge Sundae
           </Text>
           <Image source={require('./images/mcdonalds-hot-fudge-sundae.jpg')}style={{width: 100, height: 100}} />
           <Text>
@@ -177,7 +188,7 @@ export default class FlatListBasics extends Component {
           <Button style={{marginBottom: 10}}
               backgroundColor='#03A9F4'
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              onPress={() => alert('Added!')}
+              onPress={() => addtocart(hotFudgeSundae)}
               title='ADD TO CART' />
           <View style={{borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 10}}/>
 
@@ -194,14 +205,14 @@ export default class FlatListBasics extends Component {
           <Button style={{marginBottom: 10}}
               backgroundColor='#03A9F4'
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              onPress={() => alert('Added!')}
+              onPress={() => addtocart(oreoMcFlurry)}
               title='ADD TO CART' />
         </Card>
       </ScrollView>
       <Button
           backgroundColor='#03A9F4'
           buttonStyle={{height: 65, borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-          onPress={() => this.props.navigation.navigate('Cart')}
+          onPress={() => this.props.navigation.navigate('Cart', {items: items})}
           title='CHECKOUT' />
       </View>
     );
@@ -219,6 +230,54 @@ const styles = StyleSheet.create({
     height: 44,
   },
 })
+
+var items = [];
+
+export function addtocart(item){
+  for(var i = 0; i < items.length; i++){
+    //see if the item is already in the array and increase the quantity if it is
+    if(items[i].key== item.key){
+      more(items[i]);
+      alert("item " + item.item_name + " has been added to your cart");
+      return;
+    }
+  }
+  items.push(item);
+  more(item);
+  alert("item " + item.item_name + " has been added to your cart");
+
+}
+
+export class item {
+  item_name;
+  item_price;
+  key;
+  quantity;
+  item_total;
+
+  constructor(item,price,key) {
+      this.item_name = item;
+      this.item_price = price;
+      this.key = key;
+      this.quantity = 0;
+      this.item_total = price;
+  }
+  
+}
+
+export function more(item) {
+  item.quantity += 1;
+  item.item_total = item.item_total * item.quantity;
+}
+
+export function less(item) {
+  this.quantity -= 1;
+  item.item_total = item.item_total * item.quantity;
+}
+
+export function getItems(){
+  return items;
+}
 
 // skip this line if using Create React Native App
 AppRegistry.registerComponent('AwesomeProject', () => FlatListBasics);
