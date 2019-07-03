@@ -19,6 +19,7 @@ class FlatListItem extends Component{
 export default class Cart extends Component {
   state: {
     items: [],
+    total: Number,
   }
   static navigationOptions = ({navigation}) => {
   return {
@@ -31,28 +32,70 @@ export default class Cart extends Component {
     this.state = {
       items: this.props.navigation.getParam('items','no-items!'),
     }
+    this.calcTotal = this.calcTotal.bind(this);
+    this.add = this.add.bind(this);
+    ototal = 0;
+    items = this.state.items;
+    for(var i = 0; i < items.length; i++){
+      item = items[i];
+      ototal += item.item_total; 
+      item.item_total = ototal;
+    }
+    this.setState({total: ototal});
   }
 
 calcTotal(){
-  var total = 0;
+  ototal = 0;
   items = this.state.items;
   for(var i = 0; i < items.length; i++){
     item = items[i];
-    total += item.item_total;
+    ototal += item.item_total; 
   }
-  return total;
+  this.setState({total: ototal});
+  return ototal;
 }
-remove(item){
-  console.log("Remove");
-  console.log(item);
+remove(index){
+  console.log(index);
+  items = this.state.items;
+  itemsarr = this.state.items;
+  item = items[index]
+  var newQuan = item.quantity - 1;
+  if(newQuan == 0){
+    itemsarr.splice(index,1);
+    this.setState({items:itemsarr});
+    this.deleteItemById(index);
+    return;
+  }
+  item.quantity = newQuan;
+  item.item_total = (item.item_price*item.quantity)
+  this.setState({items: itemsarr});
+  this.calcTotal();
 }
-add(item){
-  console.log("Add");
-  console.log(item);
+add(index){
+  console.log(index);
+  items = this.state.items;
+  itemsarr = this.state.items;
+  item = items[index]
+  var newQuan = item.quantity + 1;
+  item.quantity = newQuan;
+  item.item_total = (item.item_price*item.quantity)
+  this.setState({items: itemsarr});
+  this.calcTotal();
+}
+
+deleteItemById = id => {
+  const filteredData = this.state.items.filter(item => item.key !== id);
+  this.setState({ items: filteredData });
+  if(this.state.items.length == 0){
+    this.setState({total: 0});
+  }
+}
+
+checkout(){
+  console.log("here")
 }
 
   render() {
-    console.log(this.state.items);
     return (
       <View style ={{flex:1,marginTop: 22}}>
         <Card
@@ -60,7 +103,7 @@ add(item){
           class="cardSize">
         <FlatList data = {this.state.items} extraData = {this.state}
         renderItem={({item,index})=>{
-          console.log(`Item = ${JSON.stringify(item)}, index = ${index}`);
+          //console.log(`Item = ${JSON.stringify(item)}, index = ${index}`);
           return (
           <View>
           <FlatListItem item ={item} index={index}>
@@ -68,11 +111,11 @@ add(item){
           <View style={{flex: 1, flexDirection: 'row'}}>
           <Button style = {{marginRight: 5}}
             title = " + "
-            onPress = {()=> this.add(item)}
+            onPress = {()=> this.add(index)}
           ></Button>
           <Button
             title = " - "
-            onPress = {()=> this.remove(item)}
+            onPress = {()=> this.remove(index)}
           ></Button>
           </View>
           </View>
@@ -80,12 +123,17 @@ add(item){
         }}>
 
         </FlatList>
-        <Text>Order Total: {this.calcTotal()}$</Text>
+        <Text>Order Total: {this.state.total}$</Text>
+          <Button style = {{marginRight: 5}}
+            title = " Checkout "
+            onPress = {()=> this.props.navigation.navigate('Confirm', {total: this.state.total})}
+          ></Button>
         </Card>
       </View>
     );
   }
 }
+
 
 
 const styles = StyleSheet.create({

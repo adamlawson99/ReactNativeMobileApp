@@ -8,6 +8,23 @@ export default class FlatListBasics extends Component {
     title: 'Checkout'
   };
 };
+    constructor(){
+        super()
+        this.state = {
+            firstname: String,
+          }
+    }
+
+
+submit(){
+    console.log(this.validateFirstname(this.state.firstname));
+}
+
+validateFirstname = (FirstName) => {
+    var re = /^[a-zA-Z" +"]+$/;
+      return re.test(FirstName);
+};
+
   render() {
     return (
       <View style={styles.container}>
@@ -17,7 +34,7 @@ export default class FlatListBasics extends Component {
           class="cardSize">
           <View style={{flexDirection:"row", borderBottomColor: '#000000', borderBottomWidth: 1}}>
               <View style={{flex:1}}>
-                  <TextInput placeholder="First Name" style={{justifyContent: 'flex-start', fontSize: 25}} />
+                  <TextInput placeholder="First Name" value={this.state.firstname} onChangeText= {(firstname) => this.setState({firstname})} style={{justifyContent: 'flex-start', fontSize: 25}} />
               </View>
               <View style={{flex:1}}>
                   <TextInput placeholder="Last Name" style={{justifyContent: 'flex-end', fontSize: 25}} />
@@ -73,7 +90,7 @@ export default class FlatListBasics extends Component {
         <Button
             backgroundColor='#03A9F4'
             buttonStyle={{height: 65, borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-            onPress={() => this.props.navigation.navigate('Checkout')}
+            onPress={() => this.submit()}
             title='CONFIRM AND PAY' />
         </ScrollView>
         </View>
