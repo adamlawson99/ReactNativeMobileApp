@@ -4,7 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { AppRegistry, FlatList, StyleSheet, Text, View} from 'react-native';
 import { Card, ListItem, Button, Icon, Image } from 'react-native-elements';
 
-export default class Example extends Component {
+export default class Confirm extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       title: 'Checkout'
@@ -28,6 +28,10 @@ export default class Example extends Component {
 
 
     this.state = {
+      subTotal:this.props.navigation.getParam('total','no-total!'),
+      HST: 0,
+      deliveryFee: 2.99,
+      OrderTotal:0,
       firstname: '',
       lastname: '',
       email: '',
@@ -66,7 +70,10 @@ export default class Example extends Component {
 
   onSubmit() {
     let errors = {};
+    var ecount = 0;
     var emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    var ccreg = /^[0-9]*$/;
+    var nameReg = /^[a-zA-z]*$/;
 
     ['firstname','lastname','email','province','city','street','ccardNumber','ccardSecurity','ccardExp']
       .forEach((name) => {
@@ -74,15 +81,31 @@ export default class Example extends Component {
 
         if (!value) {
           errors[name] = 'Should not be empty';
+          ecount  = ecount + 1;
         } 
         else {
-          if (!emailReg.test(value)) {
+          if (name == 'email' && !emailReg.test(value)) {
             errors[name] = 'Invalid Format';
+            ecount  = ecount + 1;
+          }
+          if((name == 'firstname' || name == 'lastname') && !nameReg.test(value)){
+            errors[name] = 'must contain letters only';
+            ecount  = ecount + 1;
+          }
+          if(name == 'ccardNumber' && !ccreg.test(value)){
+            errors[name] = 'must contain numbers only';
+            ecount  = ecount + 1;
           }
         }
       });
 
+    console.log(ecount);
+    if(ecount == 0){
+      alert("Your order is on the way!");
+    }
     this.setState({ errors });
+    console.log(typeof(errors));
+    // alert("Your order is on the way!")}
   }
 
   onSubmitFirstName() {
@@ -91,6 +114,19 @@ export default class Example extends Component {
 
   updateRef(name, ref) {
     this[name] = ref;
+  }
+
+  calctotal(){
+    var oHST = this.state.subTotal * 0.13;
+    var  oTotal = this.state.HST + this.state.deliveryFee + this.state.subTotal;
+    this.setState({
+      OrderTotal: oTotal,
+      HST:oHST,
+    })
+  }
+
+  componentDidMount(){
+    this.calctotal();
   }
 
   render() {
@@ -227,14 +263,14 @@ export default class Example extends Component {
             </View>
             </View>
       </Card>
-      <Text>Order Subtotal:</Text>
-      <Text>HST:</Text>
-      <Text>Delivery Fee:</Text>
-      <Text>Order Total:</Text>
+      <Text>Order Subtotal: {this.state.subTotal}$</Text>
+      <Text>HST: {this.state.HST}$</Text>
+      <Text>Delivery Fee: {this.state.deliveryFee}$</Text>
+      <Text>Order Total: {this.state.OrderTotal}$</Text>
       <Button 
       backgroundColor='#03A9F4'
       buttonStyle={{height: 65, borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 10}}
-      onPress = { ()=> this.onSubmit()} 
+      onPress = { ()=> {this.onSubmit()} }
       title = "Confirm and Pay"
       ></Button>
       </ScrollView>

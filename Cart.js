@@ -17,10 +17,6 @@ class FlatListItem extends Component{
 }
 
 export default class Cart extends Component {
-  state: {
-    items: [],
-    total: Number,
-  }
   static navigationOptions = ({navigation}) => {
   return {
     title: 'Cart'
@@ -31,25 +27,22 @@ export default class Cart extends Component {
     this.calcTotal = this.calcTotal.bind(this);
     this.state = {
       items: this.props.navigation.getParam('items','no-items!'),
+      total: 0,
     }
     this.calcTotal = this.calcTotal.bind(this);
     this.add = this.add.bind(this);
-    ototal = 0;
-    items = this.state.items;
-    for(var i = 0; i < items.length; i++){
-      item = items[i];
-      ototal += item.item_total; 
-      item.item_total = ototal;
-    }
-    this.setState({total: ototal});
   }
+
+
 
 calcTotal(){
   ototal = 0;
   items = this.state.items;
   for(var i = 0; i < items.length; i++){
     item = items[i];
-    ototal += item.item_total; 
+    item_total = 0;
+    itemt = item.item_total;
+    ototal = ototal + itemt; 
   }
   this.setState({total: ototal});
   return ototal;
@@ -95,7 +88,12 @@ checkout(){
   console.log("here")
 }
 
+componentDidMount(){
+  this.calcTotal();
+}
+
   render() {
+    const total = this.state.total;
     return (
       <View style ={{flex:1,marginTop: 22}}>
         <Card
@@ -126,7 +124,7 @@ checkout(){
         <Text>Order Total: {this.state.total}$</Text>
           <Button style = {{marginRight: 5}}
             title = " Checkout "
-            onPress = {()=> this.props.navigation.navigate('Confirm', {total: this.state.total})}
+            onPress = {()=> this.props.navigation.navigate('Confirm', {total:total})}
           ></Button>
         </Card>
       </View>
